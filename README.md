@@ -19,9 +19,9 @@ pyspelling -c ipyspell.yml > typos.txt
 You can override the specified path to particular tasks (eg check Markdown cells or Python code cells) with the `-S` switch:
 
 ```
-nb_spellchecker tonyhirst$ pyspelling -c ipyspell.yml -S "quicktest/Part*/*.ipynb" -n Markdown  > typos_md.txt
+pyspelling -c ipyspell.yml -S "quicktest/Part*/*.ipynb" -n Markdown  > typos_md.txt
 
-nb_spellchecker tonyhirst$ pyspelling -c ipyspell.yml -S "quicktest/Part*/*.ipynb" -n Python  > typos_py.txt
+pyspelling -c ipyspell.yml -S "quicktest/Part*/*.ipynb" -n Python  > typos_py.txt
 ```
 
 ## Finding Repeated Words
