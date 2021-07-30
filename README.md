@@ -64,3 +64,21 @@ egrep -o  "\b(\w+)\s+\1\b" */.md/*.md
 ```
 
 TO DO: add this in somehow...
+
+
+### See also
+
+[`codespell-project/codespell`](https://github.com/codespell-project/codespell): spelling error and correction in part through manually maintained lookup/correction dictionaries.
+
+```
+# Pre-commit hook
+-   repo: https://github.com/codespell-project/codespell/
+    rev: v2.1.0
+    hooks:
+    -  id: codespell
+    name: codespell
+    description: Checks for common misspellings in text files.
+    entry: codespell
+    language: python
+    types: [text]
+  ```
