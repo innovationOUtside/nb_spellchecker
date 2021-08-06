@@ -8,7 +8,19 @@ The `nb_spellchecker` is a package to explore various spell checking strategies 
 ```
 pip install --upgrade git+https://github.com/innovationOUtside/nb_spellchecker.git
 ```
+Also requires:  `pip install --upgrade git+https://github.com/ouseful-PR/pyspelling.git@th-ipynb`
 
+## Usage
+
+Install `nb_spellchecker` and my extended version of `pyspelling`.
+
+Download (or copy) the `ipyspell.yml` file from this repo, then change the two `sources` paths (currently `content/*/*.ipynb`, which is to say, `.ipynb` files in subdirs of the `content` directory relative to where `pyspelling` is run) for the markdown and code cell file checking.
+
+Download or create a copy of `.wordlist.txt`, a file containing whitelisted words (this can be an empty file: `touch .wordlist.txt`
+
+Run `pyspelling` with the command: `pyspelling -c ipyspell.yml > typos.txt` to generate a report in the `typos.txt` file.
+
+Generate a report of typos by notebook: `nb_spellchecker reporter -r summary_report.txt` (the report will be in `summary_report.txt`)
 
 ## `pyspelling`
 
@@ -48,7 +60,7 @@ nb_spellchecker reporter -c csv_typos.csv
 nb_spellchecker reporter -r summary_report.txt
 
 # Generate a report summarising typo counts over all notebooks
-nb_spellchecker reporter -r summary_report.txt
+nb_spellchecker reporter -t summary_report.txt
 
 # Generate an ordered typo wordlist over all notebooks
 nb_spellchecker reporter -w typoswordlist.txt 
