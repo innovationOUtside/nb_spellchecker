@@ -27,20 +27,17 @@ def pyspelling_reporter(fn='typos.txt', out_csv='typos.csv', out_report=None,
     
             currfile = t.split('/')[-1].split('.ipynb')[0]#+'.ipynb'
             continue
-            
-        df = df.append({'filename': currfile, 'cell_type': cell_type,
-                        'typo': t}, ignore_index=True)
+        df = pd.concat([df, pd.DataFrame([{'filename': currfile, 'cell_type': cell_type,
+                        'typo': t}])], ignore_index=True)
 
     if out_csv:
         df.to_csv(out_csv, index=False)
 
     if out_report:
-        reports = pd.DataFrame()
+        #reports = pd.DataFrame()
         # Do we want to allow for some sort of pattern match on filename to limit files shown in summary report?
         df_group = df[(df['cell_type']=='md')][['filename','typo']].groupby(['filename'])
-     
-        for key, item in df_group:
-            reports = pd.concat([reports, df_group.get_group(key).value_counts().to_frame()])
+        reports = df_group.value_counts().to_frame()
 
         print(f"Writing summary report to {out_report}")
         reports.to_csv(out_report, header=False)
